@@ -202,15 +202,15 @@ resource "tls_private_key" "example" {
 }
 
 resource "aws_key_pair" "generated_key" {
-  key_name   = "junjie-tf-key"
+  key_name   = "junjie1-tf-key"
   public_key = tls_private_key.example.public_key_openssh
 }
 
 resource "local_file" "private_key" {
   content  = tls_private_key.example.private_key_pem
-  filename = "${path.module}/junjie-tf-key.pem"
+  filename = "${path.module}/junjie1-tf-key.pem"
   provisioner "local-exec" {
-    command = "chmod 400 ${path.module}/junjie-tf-key.pem"
+    command = "chmod 400 ${path.module}/junjie1-tf-key.pem"
   }
 }
 
