@@ -16,6 +16,18 @@ provider "aws" {
   #secret_key = "my-secret-key"
 }
 
+# Create AWS S3
+resource "aws_s3_bucket" "bucket" {
+  #Change to unique name
+  bucket ="junjie-s3-tf-29072024"
+
+  tags = {
+    Name = "junjie bucket"
+    Environment = "Dev"
+    Department = "DevOps"
+  }
+}
+
 #Create VPC
 resource "aws_vpc" "main" {
   cidr_block       = "10.0.0.0/16"
