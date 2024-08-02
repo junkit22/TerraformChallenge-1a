@@ -1,13 +1,3 @@
-# Define the EC2 instance
-resource "aws_instance" "example" {
-  ami             = var.ami_id # Amazon Linux 2023 AMI ID
-  instance_type   = var.instance_type
-  #key_name       = "junjie-useast1-13072024"
-  key_name         = aws_key_pair.generated_key.key_name # Part of additional challenge 1
-  subnet_id        = aws_subnet.public_subnet_az1.id
-  security_groups  = [aws_security_group.allow_ssh_http_https.id] # Use the security group
-  associate_public_ip_address = true # Enable public IP
-
 
 ## Additional Challenge 1 - Create Key Pair and download to local file
 # Create EC2 Key Pair
@@ -28,6 +18,18 @@ resource "local_file" "private_key" {
     command = "chmod 400 ${path.module}/junjie1-tf-key.pem"
   }
 }
+
+
+# Define the EC2 instance
+resource "aws_instance" "example" {
+  ami             = var.ami_id # Amazon Linux 2023 AMI ID
+  instance_type   = var.instance_type
+  #key_name       = "junjie-useast1-13072024"
+  key_name         = aws_key_pair.generated_key.key_name # Part of additional challenge 1
+  subnet_id        = aws_subnet.public_subnet_az1.id
+  security_groups  = [aws_security_group.allow_ssh_http_https.id] # Use the security group
+  associate_public_ip_address = true # Enable public IP
+
 
 
  ## Additional Challenge 2 - Create EC2 with a User Data script / bootstrap script
