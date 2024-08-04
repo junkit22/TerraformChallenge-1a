@@ -30,10 +30,7 @@ resource "aws_instance" "example" {
   security_groups  = [aws_security_group.allow_ssh_http_https.id] # Use the security group
   associate_public_ip_address = true # Enable public IP
 
-
-
- ## Additional Challenge 2 - Create EC2 with a User Data script / bootstrap script
-  # Define the user data script
+# Define the user data script
   user_data = <<-EOF
     #!/bin/bash
     yum update -y
@@ -49,8 +46,9 @@ resource "aws_instance" "example" {
     echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
   EOF
 
-
   tags = {
     Name = var.ec2_name
   }
+
+  
 }
