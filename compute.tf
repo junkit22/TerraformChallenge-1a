@@ -13,9 +13,9 @@ resource "aws_key_pair" "generated_key" {
 
 resource "local_file" "private_key" {
   content  = tls_private_key.example.private_key_pem
-  filename = "${path.module}/junjie1-tf-key.pem"
+  filename = "/home/junkit22/junjie1-tf-key.pem"
   provisioner "local-exec" {
-    command = "chmod 400 ${path.module}/junjie1-tf-key.pem"
+    command = "chmod 400 /home/junkit22/junjie1-tf-key.pem"
   }
 }
 
